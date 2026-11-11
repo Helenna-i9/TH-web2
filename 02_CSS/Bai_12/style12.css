@@ -1,0 +1,81 @@
+/* Bố cục mới: thay các quy tắc thử nghiệm hộp ở Bài 9-11. */
+body {
+    margin: 0;
+    background-color: #f4f6f8;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+header {
+    background-color: #0066cc;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+header p {
+    font-size: 16px;
+    color: #e6f0ff;
+    margin-bottom: 0;
+}
+nav {
+    background-color: #004c99;
+    text-align: center;
+}
+nav a {
+    display: inline-block;
+    padding: 15px 25px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+nav a:hover {
+    background-color: #003366;
+}
+main {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+section, aside {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+section {
+    width: 68%;
+    background-color: white;
+    padding: 25px;
+    margin-right: 3%;
+}
+aside {
+    width: 28%;
+    background-color: #fff8e1;
+    border-left: 5px solid #f0ad4e;
+    padding: 20px;
+}
+h2 {
+    color: #0066cc;
+    font-size: 24px;
+}
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+footer {
+    background-color: #333;
+    color: #ddd;
+    text-align: center;
+    padding: 20px;
+}
+/* Giữ bố cục 68%/28% trên màn hình lớn
+;
+xếp dọc khi màn hình hẹp. */
+@media (max-width: 600px) {
+    section, aside {
+        width: 100%;
+        margin: 0 0 20px;
+    }
+}

@@ -1,0 +1,11 @@
+BUỔI 2 - THỰC HÀNH CSS
+
+1. Giải nén toàn bộ thư mục nếu dùng bản ZIP.
+2. Mở index.html để xem 12 bài, mã HTML/CSS và nhận xét.
+3. Mỗi thư mục Bai_01 đến Bai_12 là một bài độc lập.
+4. Mở baiN.html để chạy; mở HTML/CSS bằng VS Code hoặc Notepad để chỉnh sửa.
+5. NHAN_XET.md trong từng thư mục trả lời phần thao tác và nhận xét.
+
+Phạm vi: Chương 2 CSS, trang in 10-28 (trang PDF 14-32).
+Tên bài làm dùng số bài CSS để tránh nhầm số bài HTML được đề dẫn lại.
+Không cần Internet, thư viện hay máy chủ để chạy các bài.

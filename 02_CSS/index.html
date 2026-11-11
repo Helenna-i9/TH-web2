@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài giải thực hành CSS</title>
+<style>
+body {
+    margin: 0;
+    background: #f3f5f8;
+    color: #203045;
+    font: 16px/1.65 Arial, sans-serif;
+}
+main {
+    max-width: 1080px;
+    margin: auto;
+    padding: 32px 24px;
+}
+h1,h2,h3 {
+    line-height: 1.3;
+}
+h1 {
+    color: #0756a0;
+}
+a {
+    color: #0756a0;
+}
+article {
+    background: white;
+    padding: 28px;
+    margin: 28px 0;
+    border: 1px solid #dce3eb;
+    border-radius: 12px;
+}
+pre {
+    background: #102238;
+    color: #ecf3ff;
+    padding: 20px;
+    border-radius: 8px;
+    overflow: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font: 14px/1.55 Consolas, monospace;
+}
+li {
+    margin-bottom: 12px;
+}
+.toc {
+    columns: 2;
+}
+@media(max-width:600px) {
+    .toc {
+        columns:1;
+    }
+    article {
+        padding:16px;
+    }
+}
+@media print {
+    body {
+        background:white;
+    }
+    article {
+        border:0;
+        page-break-before:always;
+    }
+    pre {
+        background:#f3f3f3;
+        color:black;
+    }
+}
+</style>
+</head>
+<body>
+<main id="dau"><h1>Buổi 2 — Thực hành CSS</h1><p>Bài giải Chương 2: 12 bài, từ mục 2.1 đến 2.12 của giáo trình. Mỗi bài gồm yêu cầu, mã nguồn và nhận xét. Các tệp gốc giữ giá trị ban đầu theo đề; phần nhận xét giải thích kết quả khi thử thay đổi.</p><p><strong>Cách dùng:</strong> Chọn bài để đọc hướng dẫn; bấm “Mở kết quả” để xem giao diện. Dùng VS Code hoặc Notepad để sửa HTML/CSS, lưu rồi nhấn F5 trong trình duyệt. Không cần cài thư viện hoặc kết nối mạng để xem bài (trừ liên kết website trường).</p><p>Các liên kết menu là liên kết nội trang để minh họa CSS, không triển khai hệ thống đăng ký học phần. Bài 9–11 giữ chiều rộng cố định đúng đề.</p><ol class="toc"><li><a href="#bai1">CSS nội bộ cơ bản</a></li><li><a href="#bai2">CSS nội tuyến</a></li><li><a href="#bai3">CSS nội bộ</a></li><li><a href="#bai4">CSS bên ngoài</a></li><li><a href="#bai5">Bộ chọn thẻ, class và id</a></li><li><a href="#bai6">Bộ chọn kết hợp và hover</a></li><li><a href="#bai7">Màu sắc và phông chữ</a></li><li><a href="#bai8">Mô hình hộp: padding, border, margin</a></li><li><a href="#bai9">So sánh content-box và border-box</a></li><li><a href="#bai10">Menu ngang với padding và margin</a></li><li><a href="#bai11">Menu ngang với inline-block</a></li><li><a href="#bai12">Bố cục trang hoàn chỉnh</a></li></ol><article id="bai1"><h2>Bài 1. CSS nội bộ cơ bản</h2><h3>1. Yêu cầu và tệp bài làm</h3><p>Dùng thẻ style trong head; Arial; nền #f5f5f5; h1 xanh, 32px, căn giữa; h2 darkgreen 24px; p #333 16px.</p><p><a href="Bai_01/bai1.html" target="_blank">Mở kết quả Bài 1</a></p><h3>2. Mã HTML</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;vi&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Bài 1 - CSS nội bộ cơ bản&lt;/title&gt;
+&lt;style&gt;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+h1 {
+    color: blue;
+    font-size: 32px;
+    text-align: center;
+}
+h2 {
+    color: darkgreen;
+    font-size: 24px;
+}
+p {
+    color: #333;
+    font-size: 16px;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;THIẾT KẾ WEB&lt;/h1&gt;
+&lt;h2&gt;Thông tin môn học&lt;/h2&gt;
+&lt;p&gt;Môn học cung cấp các kiến thức cơ bản về thiết kế và xây dựng giao diện Web.&lt;/p&gt;
+&lt;h2&gt;Nội dung thực hành&lt;/h2&gt;
+&lt;p&gt;Sinh viên thực hành HTML, CSS, JavaScript và Bootstrap.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3>Thao tác và nhận xét</h3><ol><li>color thay đổi màu chữ của phần tử; không đổi màu nền. Đổi blue thành red làm tiêu đề h1 đỏ.</li><li>text-align: left, center, right lần lượt căn nội dung về trái, giữa, phải trong hộp h1.</li><li>font-size càng lớn thì chữ càng lớn; ví dụ 20px nhỏ hơn 32px, 40px lớn hơn 32px.</li></ol><a href="#dau">Về mục lục</a></article><article id="bai2"><h2>Bài 2. CSS nội tuyến</h2><h3>1. Yêu cầu và tệp bài làm</h3><p>Chỉ dùng thuộc tính style trên từng thẻ; không dùng thẻ style hay tệp CSS ngoài.</p><p><a href="Bai_02/bai2.html" target="_blank">Mở kết quả Bài 2</a></p><h3>2. Mã HTML</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;vi&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Bài 2 - CSS nội tuyến&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 style=&quot;color: blue; font-size: 32px; text-align: center;&quot;&gt;THIẾT KẾ WEB&lt;/h1&gt;
+&lt;h2 style=&quot;color: darkgreen; font-size: 24px;&quot;&gt;Thông tin môn học&lt;/h2&gt;
+&lt;p style=&quot;color: #333; font-size: 16px;&quot;&gt;Môn học cung cấp các kiến thức cơ bản về thiết kế và xây dựng giao diện Web.&lt;/p&gt;
+&lt;h2 style=&quot;color: darkgreen; font-size: 24px;&quot;&gt;Nội dung thực hành&lt;/h2&gt;
+&lt;p style=&quot;color: #333; font-size: 16px;&quot;&gt;Sinh viên thực hành HTML, CSS, JavaScript và Bootstrap.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3>Thao tác và nhận xét</h3><ol><li>Đổi color: blue thành red: chỉ tiêu đề h1 chuyển sang đỏ.</li><li>Đổi text-align: center thành right: nội dung tiêu đề căn phải.</li><li>Đổi font-size từ 32px xuống 20px: chữ tiêu đề nhỏ hơn.</li><li>Xóa style của h1: trình duyệt dùng quy tắc mặc định hoặc CSS kế thừa còn áp dụng. Trong bài này h1 thường đậm, cỡ 2em và căn trái trong trang tiếng Việt mặc định.</li></ol><a href="#dau">Về mục lục</a></article><article id="bai3"><h2>Bài 3. CSS nội bộ</h2><h3>1. Yêu cầu và tệp bài làm</h3><p>Làm lại Bài 2 bằng thẻ style đặt trong head.</p><p><a href="Bai_03/bai3.html" target="_blank">Mở kết quả Bài 3</a></p><h3>2. Mã HTML</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;vi&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Bài 3 - CSS nội bộ&lt;/title&gt;
+&lt;style&gt;
+h1 {
+    color: blue;
+    font-size: 32px;
+    text-align: center;
+}
+h2 {
+    color: darkgreen;
+    font-size: 24px;
+}
+p {
+    color: #333;
+    font-size: 16px;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;THIẾT KẾ WEB&lt;/h1&gt;
+&lt;h2&gt;Thông tin môn học&lt;/h2&gt;
+&lt;p&gt;Môn học cung cấp các kiến thức cơ bản về thiết kế và xây dựng giao diện Web.&lt;/p&gt;
+&lt;h2&gt;Nội dung thực hành&lt;/h2&gt;
+&lt;p&gt;Sinh viên thực hành HTML, CSS, JavaScript và Bootstrap.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3>Thao tác và nhận xét</h3><ol><li>Thực hiện các thay đổi ở Bài 2 trong quy tắc h1 của thẻ style; kết quả về màu, cỡ chữ và căn chỉnh tương tự.</li><li>Để thử trạng thái mặc định, xóa quy tắc h1 trong thẻ style. Xóa thuộc tính style trên h1 không có tác dụng vì bài này không dùng CSS nội tuyến.</li><li>CSS nội bộ dùng chung quy tắc cho các phần tử phù hợp trong một trang.</li></ol><a href="#dau">Về mục lục</a></article><article id="bai4"><h2>Bài 4. CSS bên ngoài</h2><h3>1. Yêu cầu và tệp bài làm</h3><p>Làm lại Bài 2 bằng tệp style.css và thẻ link.</p><p><a href="Bai_04/bai4.html" target="_blank">Mở kết quả Bài 4</a></p><h3>2. Mã HTML</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;vi&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Bài 4 - CSS bên ngoài&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;THIẾT KẾ WEB&lt;/h1&gt;
+&lt;h2&gt;Thông tin môn học&lt;/h2&gt;
+&lt;p&gt;Môn học cung cấp các kiến thức cơ bản về thiết kế và xây dựng giao diện Web.&lt;/p&gt;
+&lt;h2&gt;Nội dung thực hành&lt;/h2&gt;
+&lt;p&gt;Sinh viên thực hành HTML, CSS, JavaScript và Bootstrap.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3>3. Mã CSS</h3><pre><code>h1 {
+    color: blue;
+    font-size: 32px;
+    text-align: center;
+}
+h2 {
+    color: darkgreen;
+    font-size: 24px;
+}
+p {
+    color: #333;
+    font-size: 16px;
+}
+</code></pre><h3>Thao tác và nhận xét</h3><ol><li>Sửa các thuộc tính color, text-align, font-size của h1 trong style.css; lưu rồi tải lại trang để xem thay đổi như Bài 2.</li><li>Xóa quy tắc h1 trong style.css để xem kiểu mặc định. Xóa thuộc tính style trên thẻ HTML không làm mất CSS bên ngoài.</li><li>CSS bên ngoài có thể được nhiều trang cùng liên kết, giúp tái sử dụng và bảo trì. Nếu sai đường dẫn href, trang không nhận được CSS.</li></ol><a href="#dau">Về mục lục</a></article><article id="bai5"><h2>Bài 5. Bộ chọn thẻ, class và id</h2><h3>1. Yêu cầu và tệp bài làm</h3><p>Dùng CSS ngoài, bộ chọn body, #tieude, .thongbao và .luuy.</p><p><a href="Bai_05/bai5.html" target="_blank">Mở kết quả Bài 5</a></p><h3>2. Mã HTML</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;vi&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Bài 5 - Bộ chọn thẻ, class và id&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 id=&quot;tieude&quot;&gt;THÔNG BÁO ĐĂNG KÝ HỌC PHẦN&lt;/h1&gt;
+&lt;p class=&quot;thongbao&quot;&gt;&lt;strong&gt;Thời gian đăng ký:&lt;/strong&gt; từ ngày 01/10/2026 đến ngày 10/10/2026.&lt;/p&gt;
+&lt;p class=&quot;thongbao&quot;&gt;&lt;em&gt;Sinh viên cần hoàn thành đăng ký trong thời gian quy định.&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p class=&quot;luuy&quot;&gt;&lt;strong&gt;Lưu ý:&lt;/strong&gt; Sinh viên phải kiểm tra lịch học trước khi đăng ký.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3>3. Mã CSS</h3><pre><code>body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+#tieude {
+    color: darkblue;
+    font-size: 30px;
+    text-align: center;
+}
+.thongbao {
+    color: #0066cc;
+    font-size: 18px;
+}
+.luuy {
+    color: red;
+    font-weight: bold;
+}
+</code></pre><h3>Thao tác và nhận xét</h3><ol><li>Đổi color của body chỉ ảnh hưởng chữ kế thừa màu từ body. Các phần tử có màu riêng như #tieude, .thongbao và .luuy giữ màu đã khai báo; trong nội dung mẫu, các khối chữ đều có màu riêng nên không đổi màu thấy được.</li><li>Đổi .thongbao sang green: cả 2 đoạn có class=&quot;thongbao&quot; đổi sang xanh lá.</li><li>Thêm class=&quot;luuy&quot; vào đoạn khác: đoạn đó đỏ và đậm. Nếu đoạn đã có class, thêm tên lớp vào danh sách, ví dụ class=&quot;thongbao luuy&quot;. Với thứ tự CSS hiện tại, .luuy quyết định màu đỏ, .thongbao vẫn cho cỡ chữ 18px.</li><li>Đổi #tieude sang text-align: left chỉ căn trái tiêu đề có id=&quot;tieude&quot;.</li><li>class được tái sử dụng trên nhiều phần tử; id phải duy nhất trong một tài liệu. Bộ chọn id có độ ưu tiên cao hơn class khi các điều kiện cascade khác tương đương.</li></ol><a href="#dau">Về mục lục</a></article><article id="bai6"><h2>Bài 6. Bộ chọn kết hợp và hover</h2><h3>1. Yêu cầu và tệp bài làm</h3><p>Dùng style6.css; nav a, nav a:hover và nhóm h1, h2. Liên kết ngoài nav giữ kiểu mặc định.</p><p><a href="Bai_06/bai6.html" target="_blank">Mở kết quả Bài 6</a></p><h3>2. Mã HTML</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;vi&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Bài 6 - Bộ chọn kết hợp và hover&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;style6.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 id=&quot;trangchu&quot;&gt;CỔNG THÔNG TIN SINH VIÊN&lt;/h1&gt;
+&lt;nav&gt;
+  &lt;a href=&quot;#trangchu&quot;&gt;Trang chủ&lt;/a&gt; |
+  &lt;a href=&quot;#hocphan&quot;&gt;Danh sách học phần&lt;/a&gt; |
+  &lt;a href=&quot;#huongdan&quot;&gt;Hướng dẫn&lt;/a&gt; |
+  &lt;a href=&quot;#lienhe&quot;&gt;Liên hệ&lt;/a&gt;
+&lt;/nav&gt;
+&lt;h2 id=&quot;hocphan&quot;&gt;Thông tin&lt;/h2&gt;
+&lt;p id=&quot;huongdan&quot;&gt;Sinh viên truy cập các chức năng thông qua các liên kết phía trên.&lt;/p&gt;
+&lt;p id=&quot;lienhe&quot;&gt;Xem thêm tại &lt;a href=&quot;https://mku.edu.vn/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;website của trường&lt;/a&gt;.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3>3. Mã CSS</h3><pre><code>body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+h1, h2 {
+    font-family: Arial, sans-serif;
+}
+h1 {
+    color: darkblue;
+    text-align: center;
+}
+nav a {
+    color: #0066cc;
+    text-decoration: none;
+}
+nav a:hover {
+    color: red;
+    text-decoration: underline;
+}
+</code></pre><h3>Thao tác và nhận xét</h3><ol><li>nav a chỉ chọn liên kết bên trong nav; a chọn mọi liên kết, bao gồm liên kết website của trường ngoài nav.</li><li>Đổi nav a:hover sang green: liên kết trong nav xanh lá khi rê chuột, vẫn gạch chân; rời chuột trở về màu thường.</li><li>h1, h2 gộp các quy tắc giống nhau, ngắn hơn hai quy tắc riêng mà cho cùng kết quả.</li></ol><a href="#dau">Về mục lục</a></article><article id="bai7"><h2>Bài 7. Màu sắc và phông chữ</h2><h3>1. Yêu cầu và tệp bài làm</h3><p>Dùng style7.css; định dạng màu nền, màu chữ, font-size, font-weight và line-height theo đề.</p><p><a href="Bai_07/bai7.html" target="_blank">Mở kết quả Bài 7</a></p><h3>2. Mã HTML</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;vi&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Bài 7 - Màu sắc và phông chữ&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;style7.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 id=&quot;trangchu&quot;&gt;CỔNG THÔNG TIN SINH VIÊN&lt;/h1&gt;
+&lt;nav&gt;
+  &lt;a href=&quot;#trangchu&quot;&gt;Trang chủ&lt;/a&gt; |
+  &lt;a href=&quot;#hocphan&quot;&gt;Danh sách học phần&lt;/a&gt; |
+  &lt;a href=&quot;#huongdan&quot;&gt;Hướng dẫn&lt;/a&gt; |
+  &lt;a href=&quot;#lienhe&quot;&gt;Liên hệ&lt;/a&gt;
+&lt;/nav&gt;
+&lt;h2 id=&quot;hocphan&quot;&gt;Thông tin&lt;/h2&gt;
+&lt;p id=&quot;huongdan&quot;&gt;Sinh viên truy cập các chức năng thông qua các liên kết phía trên.&lt;/p&gt;
+&lt;p id=&quot;lienhe&quot;&gt;Xem thêm tại &lt;a href=&quot;https://mku.edu.vn/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;website của trường&lt;/a&gt;.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3>3. Mã CSS</h3><pre><code>body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f6f8;
+}
+h1 {
+    color: #ffffff;
+    background-color: #0066cc;
+    font-size: 32px;
+    text-align: center;
+}
+nav {
+    background-color: #e6f0ff;
+    text-align: center;
+}
+nav a {
+    color: #0055aa;
+    font-weight: bold;
+    text-decoration: none;
+}
+nav a:hover {
+    color: red;
+    text-decoration: underline;
+}
+h2 {
+    color: darkgreen;
+    font-size: 24px;
+}
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+</code></pre><h3>Thao tác và nhận xét</h3><ol><li>Đổi nền body sang lightyellow làm nền trang vàng nhạt. Những vùng đã có nền riêng vẫn giữ màu nền riêng.</li><li>Đổi Arial sang &quot;Times New Roman&quot;, serif làm chữ chuyển sang phông có chân nếu phông có sẵn.</li><li>font-weight: normal làm liên kết bớt đậm so với bold.</li><li>Với chữ 16px, line-height: 1, 1.6, 2 lần lượt tương ứng chiều cao dòng 16px, 25.6px, 32px. Dòng quá sát khó đọc; tăng chiều cao dòng tạo thêm khoảng cách.</li><li>Đề có dòng color: #333 ở cuối nav a:hover. Dòng này sẽ ghi đè color: red; bài giải bỏ dòng dư để đúng yêu cầu màu đỏ.</li></ol><a href="#dau">Về mục lục</a></article><article id="bai8"><h2>Bài 8. Mô hình hộp: padding, border, margin</h2><h3>1. Yêu cầu và tệp bài làm</h3><p>Kế thừa Bài 7; thêm padding, border, margin trong style8.css.</p><p><a href="Bai_08/bai8.html" target="_blank">Mở kết quả Bài 8</a></p><h3>2. Mã HTML</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;vi&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Bài 8 - Mô hình hộp: padding, border, margin&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;style8.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 id=&quot;trangchu&quot;&gt;CỔNG THÔNG TIN SINH VIÊN&lt;/h1&gt;
+&lt;nav&gt;
+  &lt;a href=&quot;#trangchu&quot;&gt;Trang chủ&lt;/a&gt; |
+  &lt;a href=&quot;#hocphan&quot;&gt;Danh sách học phần&lt;/a&gt; |
+  &lt;a href=&quot;#huongdan&quot;&gt;Hướng dẫn&lt;/a&gt; |
+  &lt;a href=&quot;#lienhe&quot;&gt;Liên hệ&lt;/a&gt;
+&lt;/nav&gt;
+&lt;h2 id=&quot;hocphan&quot;&gt;Thông tin&lt;/h2&gt;
+&lt;p id=&quot;huongdan&quot;&gt;Sinh viên truy cập các chức năng thông qua các liên kết phía trên.&lt;/p&gt;
+&lt;p id=&quot;lienhe&quot;&gt;Xem thêm tại &lt;a href=&quot;https://mku.edu.vn/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;website của trường&lt;/a&gt;.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3>3. Mã CSS</h3><pre><code>body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f6f8;
+}
+h1 {
+    color: #ffffff;
+    background-color: #0066cc;
+    font-size: 32px;
+    text-align: center;
+}
+nav {
+    background-color: #e6f0ff;
+    text-align: center;
+}
+nav a {
+    color: #0055aa;
+    font-weight: bold;
+    text-decoration: none;
+}
+nav a:hover {
+    color: red;
+    text-decoration: underline;
+}
+h2 {
+    color: darkgreen;
+    font-size: 24px;
+}
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+/* Bổ sung mô hình hộp từ Bài 7. */
+h1
+{
+    padding: 20px;
+    margin: 0;
+}
+nav {
+    padding: 15px;
+    margin-bottom: 30px;
+}
+h2 {
+    padding: 10px;
+    border-left: 5px solid darkgreen;
+    background-color: #eaf5ea;
+}
+p {
+    padding: 15px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    background-color: white;
+}
+</code></pre><h3>Thao tác và nhận xét</h3><ol><li>Tăng padding từ 15px lên 30px tạo thêm 15px khoảng trống ở mỗi phía bên trong đường viền.</li><li>Tăng border từ 1px lên 5px làm viền dày hơn 4px mỗi phía. Với width: auto, hộp khối vẫn lấp chiều ngang có sẵn, phần nội dung bên trong hẹp lại.</li><li>Tăng margin-bottom từ 20px lên 50px làm khoảng cách tới phần tử sau lớn hơn; lề dọc giữa các khối có thể gộp (margin collapse), nên không luôn cộng trực tiếp hai lề.</li><li>padding tạo khoảng cách bên trong hộp và nhận màu nền của hộp; margin tạo khoảng cách bên ngoài đường viền, không nhận nền của hộp.</li><li>Bỏ border thì padding vẫn có tác dụng, vẫn tạo khoảng trống giữa chữ và mép vùng nền.</li></ol><a href="#dau">Về mục lục</a></article><article id="bai9"><h2>Bài 9. So sánh content-box và border-box</h2><h3>1. Yêu cầu và tệp bài làm</h3><p>Kế thừa Bài 8; hai đoạn giống nhau có id contentBox và borderBox, width 500px, padding 20px, border đỏ 5px.</p><p><a href="Bai_09/bai9.html" target="_blank">Mở kết quả Bài 9</a></p><h3>2. Mã HTML</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;vi&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Bài 9 - So sánh content-box và border-box&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;style9.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 id=&quot;trangchu&quot;&gt;CỔNG THÔNG TIN SINH VIÊN&lt;/h1&gt;
+&lt;nav&gt;
+  &lt;a href=&quot;#trangchu&quot;&gt;Trang chủ&lt;/a&gt; |
+  &lt;a href=&quot;#hocphan&quot;&gt;Danh sách học phần&lt;/a&gt; |
+  &lt;a href=&quot;#huongdan&quot;&gt;Hướng dẫn&lt;/a&gt; |
+  &lt;a href=&quot;#lienhe&quot;&gt;Liên hệ&lt;/a&gt;
+&lt;/nav&gt;
+&lt;h2 id=&quot;hocphan&quot;&gt;Thông tin&lt;/h2&gt;
+&lt;div id=&quot;huongdan&quot;&gt;
+&lt;p id=&quot;contentBox&quot;&gt;Sinh viên truy cập các chức năng thông qua các liên kết phía trên.&lt;/p&gt;
+&lt;p id=&quot;borderBox&quot;&gt;Sinh viên truy cập các chức năng thông qua các liên kết phía trên.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p id=&quot;lienhe&quot;&gt;Xem thêm tại &lt;a href=&quot;https://mku.edu.vn/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;website của trường&lt;/a&gt;.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3>3. Mã CSS</h3><pre><code>body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f6f8;
+}
+h1 {
+    color: #ffffff;
+    background-color: #0066cc;
+    font-size: 32px;
+    text-align: center;
+}
+nav {
+    background-color: #e6f0ff;
+    text-align: center;
+}
+nav a {
+    color: #0055aa;
+    font-weight: bold;
+    text-decoration: none;
+}
+nav a:hover {
+    color: red;
+    text-decoration: underline;
+}
+h2 {
+    color: darkgreen;
+    font-size: 24px;
+}
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+/* Bổ sung mô hình hộp từ Bài 7. */
+h1
+{
+    padding: 20px;
+    margin: 0;
+}
+nav {
+    padding: 15px;
+    margin-bottom: 30px;
+}
+h2 {
+    padding: 10px;
+    border-left: 5px solid darkgreen;
+    background-color: #eaf5ea;
+}
+p {
+    padding: 15px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    background-color: white;
+}
+/* width được tính khác nhau theo box-sizing. */
+#contentBox, #borderBox
+{
+    width: 500px;
+    padding: 20px;
+    border: 5px solid red;
+    margin: 0 auto 20px;
+}
+#contentBox {
+    box-sizing: content-box;
+    background-color: lightblue;
+}
+#borderBox {
+    box-sizing: border-box;
+    background-color: lightgreen;
+}
+</code></pre><h3>Thao tác và nhận xét</h3><ol><li>content-box: width chỉ tính phần nội dung; border-box: width đã gồm nội dung, padding và border. Tổng chiều rộng nêu dưới đây không tính margin.</li><li>contentBox = 500 + 20 × 2 + 5 × 2 = 550px. borderBox = 500px; phần nội dung = 500 − 40 − 10 = 450px.</li><li>Đổi contentBox sang border-box: hai hộp đều rộng tổng cộng 500px.</li><li>Khôi phục content-box rồi đổi padding chung lên 40px: contentBox rộng 590px; borderBox vẫn rộng 500px, phần nội dung còn 410px. Nếu chỉ sửa padding của contentBox, borderBox không thay đổi.</li><li>Với width: 80%, gọi chiều rộng khối chứa là W: contentBox rộng 0.8W + 50px, borderBox rộng 0.8W (giữ padding 20px). Các hộp thay đổi theo chiều rộng cửa sổ.</li><li>Thêm max-width: 700px khi đang dùng width: 80%: giới hạn phần content của content-box ở 700px, nên hộp có thể rộng tổng cộng 750px; với border-box, tổng chiều rộng tối đa là 700px. Nếu vẫn width: 500px thì max-width: 700px chưa làm thay đổi kích thước.</li><li>Bài giữ đúng width: 500px nên có thể tràn trên màn hình nhỏ; đây là ví dụ đo mô hình hộp, không tự co chiều rộng.</li></ol><a href="#dau">Về mục lục</a></article><article id="bai10"><h2>Bài 10. Menu ngang với padding và margin</h2><h3>1. Yêu cầu và tệp bài làm</h3><p>Kế thừa Bài 9; menu ngang nền xanh, chữ trắng, padding 12px 20px và margin 0 5px.</p><p><a href="Bai_10/bai10.html" target="_blank">Mở kết quả Bài 10</a></p><h3>2. Mã HTML</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;vi&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Bài 10 - Menu ngang với padding và margin&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;style10.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 id=&quot;trangchu&quot;&gt;CỔNG THÔNG TIN SINH VIÊN&lt;/h1&gt;
+&lt;nav&gt;
+  &lt;a href=&quot;#trangchu&quot;&gt;Trang chủ&lt;/a&gt;
+  &lt;a href=&quot;#hocphan&quot;&gt;Danh sách học phần&lt;/a&gt;
+  &lt;a href=&quot;#huongdan&quot;&gt;Hướng dẫn&lt;/a&gt;
+  &lt;a href=&quot;#lienhe&quot;&gt;Liên hệ&lt;/a&gt;
+&lt;/nav&gt;
+&lt;h2 id=&quot;hocphan&quot;&gt;Thông tin&lt;/h2&gt;
+&lt;div id=&quot;huongdan&quot;&gt;
+&lt;p id=&quot;contentBox&quot;&gt;Sinh viên truy cập các chức năng thông qua các liên kết phía trên.&lt;/p&gt;
+&lt;p id=&quot;borderBox&quot;&gt;Sinh viên truy cập các chức năng thông qua các liên kết phía trên.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p id=&quot;lienhe&quot;&gt;Xem thêm tại &lt;a href=&quot;https://mku.edu.vn/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;website của trường&lt;/a&gt;.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3>3. Mã CSS</h3><pre><code>body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f6f8;
+}
+h1 {
+    color: #ffffff;
+    background-color: #0066cc;
+    font-size: 32px;
+    text-align: center;
+}
+nav {
+    background-color: #e6f0ff;
+    text-align: center;
+}
+nav a {
+    color: #0055aa;
+    font-weight: bold;
+    text-decoration: none;
+}
+nav a:hover {
+    color: red;
+    text-decoration: underline;
+}
+h2 {
+    color: darkgreen;
+    font-size: 24px;
+}
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+/* Bổ sung mô hình hộp từ Bài 7. */
+h1
+{
+    padding: 20px;
+    margin: 0;
+}
+nav {
+    padding: 15px;
+    margin-bottom: 30px;
+}
+h2 {
+    padding: 10px;
+    border-left: 5px solid darkgreen;
+    background-color: #eaf5ea;
+}
+p {
+    padding: 15px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    background-color: white;
+}
+/* width được tính khác nhau theo box-sizing. */
+#contentBox, #borderBox
+{
+    width: 500px;
+    padding: 20px;
+    border: 5px solid red;
+    margin: 0 auto 20px;
+}
+#contentBox {
+    box-sizing: content-box;
+    background-color: lightblue;
+}
+#borderBox {
+    box-sizing: border-box;
+    background-color: lightgreen;
+}
+nav {
+    background-color: #0066cc;
+    text-align: center;
+}
+nav a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 12px 20px;
+    margin: 0 5px;
+}
+nav a:hover {
+    background-color: #004c99;
+    color: white;
+    text-decoration: none;
+}
+</code></pre><h3>Thao tác và nhận xét</h3><ol><li>Đổi padding từ 12px 20px sang 20px 30px: vùng nền/vùng bấm của mỗi mục tăng 8px trên dưới và 10px trái phải.</li><li>Đổi margin từ 0 5px sang 0 15px: khoảng cách hai mục kề nhau tăng thêm tổng cộng 20px, ngoài khoảng trắng HTML.</li><li>Thêm border: 1px solid white giúp thấy rõ đường bao từng liên kết.</li><li>padding là khoảng đệm trong vùng bấm; border bao vùng padding và nội dung; margin tạo khoảng cách ngoài các liên kết.</li><li>Bài 10 giữ liên kết inline để so sánh với Bài 11: padding dọc vẫn được vẽ nhưng không làm tăng line box như inline-block; padding của nav giúp chừa chỗ cho menu.</li></ol><a href="#dau">Về mục lục</a></article><article id="bai11"><h2>Bài 11. Menu ngang với inline-block</h2><h3>1. Yêu cầu và tệp bài làm</h3><p>Kế thừa Bài 10; liên kết inline-block, width 180px, border-box, padding 15px 10px, margin 0; nav padding 0.</p><p><a href="Bai_11/bai11.html" target="_blank">Mở kết quả Bài 11</a></p><h3>2. Mã HTML</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;vi&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Bài 11 - Menu ngang với inline-block&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;style11.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 id=&quot;trangchu&quot;&gt;CỔNG THÔNG TIN SINH VIÊN&lt;/h1&gt;
+&lt;nav&gt;
+  &lt;a href=&quot;#trangchu&quot;&gt;Trang chủ&lt;/a&gt;
+  &lt;a href=&quot;#hocphan&quot;&gt;Danh sách học phần&lt;/a&gt;
+  &lt;a href=&quot;#huongdan&quot;&gt;Hướng dẫn&lt;/a&gt;
+  &lt;a href=&quot;#lienhe&quot;&gt;Liên hệ&lt;/a&gt;
+&lt;/nav&gt;
+&lt;h2 id=&quot;hocphan&quot;&gt;Thông tin&lt;/h2&gt;
+&lt;div id=&quot;huongdan&quot;&gt;
+&lt;p id=&quot;contentBox&quot;&gt;Sinh viên truy cập các chức năng thông qua các liên kết phía trên.&lt;/p&gt;
+&lt;p id=&quot;borderBox&quot;&gt;Sinh viên truy cập các chức năng thông qua các liên kết phía trên.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p id=&quot;lienhe&quot;&gt;Xem thêm tại &lt;a href=&quot;https://mku.edu.vn/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;website của trường&lt;/a&gt;.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3>3. Mã CSS</h3><pre><code>body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f6f8;
+}
+h1 {
+    color: #ffffff;
+    background-color: #0066cc;
+    font-size: 32px;
+    text-align: center;
+}
+nav {
+    background-color: #e6f0ff;
+    text-align: center;
+}
+nav a {
+    color: #0055aa;
+    font-weight: bold;
+    text-decoration: none;
+}
+nav a:hover {
+    color: red;
+    text-decoration: underline;
+}
+h2 {
+    color: darkgreen;
+    font-size: 24px;
+}
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+/* Bổ sung mô hình hộp từ Bài 7. */
+h1
+{
+    padding: 20px;
+    margin: 0;
+}
+nav {
+    padding: 15px;
+    margin-bottom: 30px;
+}
+h2 {
+    padding: 10px;
+    border-left: 5px solid darkgreen;
+    background-color: #eaf5ea;
+}
+p {
+    padding: 15px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    background-color: white;
+}
+/* width được tính khác nhau theo box-sizing. */
+#contentBox, #borderBox
+{
+    width: 500px;
+    padding: 20px;
+    border: 5px solid red;
+    margin: 0 auto 20px;
+}
+#contentBox {
+    box-sizing: content-box;
+    background-color: lightblue;
+}
+#borderBox {
+    box-sizing: border-box;
+    background-color: lightgreen;
+}
+nav {
+    background-color: #0066cc;
+    text-align: center;
+}
+nav a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 12px 20px;
+    margin: 0 5px;
+}
+nav a:hover {
+    background-color: #004c99;
+    color: white;
+    text-decoration: none;
+}
+nav {
+    padding: 0;
+}
+nav a {
+    display: inline-block;
+    width: 180px;
+    box-sizing: border-box;
+    padding: 15px 10px;
+    margin: 0;
+    text-align: center;
+}
+</code></pre><h3>Thao tác và nhận xét</h3><ol><li>inline: width không áp dụng cho liên kết văn bản thông thường, chiều ngang phụ thuộc nội dung và padding/border.</li><li>block: mỗi liên kết tạo hộp khối và bắt đầu trên dòng mới trong luồng bình thường, dù width chỉ là 180px.</li><li>inline-block: các mục có thể nằm cùng dòng và vẫn nhận width, padding đầy đủ.</li><li>Đổi width sang 220px: mục menu xuống dòng khi tổng chiều ngang vượt chỗ còn trống. Khoảng trắng giữa các thẻ inline-block cũng chiếm chỗ.</li><li>display: none trên liên kết Liên hệ: mục đó biến mất và không còn chiếm vị trí trong bố cục.</li></ol><a href="#dau">Về mục lục</a></article><article id="bai12"><h2>Bài 12. Bố cục trang hoàn chỉnh</h2><h3>1. Yêu cầu và tệp bài làm</h3><p>Tạo header, nav, main, section, aside, footer; định dạng và chia hai cột theo yêu cầu.</p><p><a href="Bai_12/bai12.html" target="_blank">Mở kết quả Bài 12</a></p><h3>2. Mã HTML</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;vi&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Bài 12 - Bố cục trang hoàn chỉnh&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;style12.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;header id=&quot;trangchu&quot;&gt;
+  &lt;h1&gt;CỔNG THÔNG TIN SINH VIÊN&lt;/h1&gt;
+  &lt;p&gt;Thông tin học tập và hướng dẫn đăng ký học phần&lt;/p&gt;
+&lt;/header&gt;
+&lt;nav&gt;
+  &lt;a href=&quot;#trangchu&quot;&gt;Trang chủ&lt;/a&gt;
+  &lt;a href=&quot;#hocphan&quot;&gt;Danh sách học phần&lt;/a&gt;
+  &lt;a href=&quot;#huongdan&quot;&gt;Hướng dẫn&lt;/a&gt;
+  &lt;a href=&quot;#lienhe&quot;&gt;Liên hệ&lt;/a&gt;
+&lt;/nav&gt;
+&lt;main&gt;
+  &lt;section id=&quot;hocphan&quot;&gt;
+    &lt;h2&gt;Đăng ký học phần&lt;/h2&gt;
+    &lt;p&gt;Sinh viên thực hiện đăng ký học phần theo kế hoạch của nhà trường.&lt;/p&gt;
+    &lt;h2 id=&quot;huongdan&quot;&gt;Hướng dẫn&lt;/h2&gt;
+    &lt;p&gt;Kiểm tra danh sách học phần trước khi thực hiện đăng ký.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;aside&gt;
+    &lt;h2&gt;Thông báo&lt;/h2&gt;
+    &lt;p&gt;Thời gian đăng ký học phần từ ngày 10/10 đến ngày 15/10.&lt;/p&gt;
+  &lt;/aside&gt;
+&lt;/main&gt;
+&lt;footer id=&quot;lienhe&quot;&gt;© 2026 Cổng thông tin sinh viên&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3>3. Mã CSS</h3><pre><code>/* Bố cục mới: thay các quy tắc thử nghiệm hộp ở Bài 9-11. */
+body {
+    margin: 0;
+    background-color: #f4f6f8;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+header {
+    background-color: #0066cc;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+header p {
+    font-size: 16px;
+    color: #e6f0ff;
+    margin-bottom: 0;
+}
+nav {
+    background-color: #004c99;
+    text-align: center;
+}
+nav a {
+    display: inline-block;
+    padding: 15px 25px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+nav a:hover {
+    background-color: #003366;
+}
+main {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+section, aside {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+section {
+    width: 68%;
+    background-color: white;
+    padding: 25px;
+    margin-right: 3%;
+}
+aside {
+    width: 28%;
+    background-color: #fff8e1;
+    border-left: 5px solid #f0ad4e;
+    padding: 20px;
+}
+h2 {
+    color: #0066cc;
+    font-size: 24px;
+}
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+footer {
+    background-color: #333;
+    color: #ddd;
+    text-align: center;
+    padding: 20px;
+}
+/* Giữ bố cục 68%/28% trên màn hình lớn
+;
+xếp dọc khi màn hình hẹp. */
+@media (max-width: 600px) {
+    section, aside {
+        width: 100%;
+        margin: 0 0 20px;
+    }
+}
+</code></pre><h3>Thao tác và nhận xét</h3><ol><li>header chứa đầu trang; nav chứa điều hướng; main chứa nội dung chính; section là nội dung bên trái; aside là thông báo bổ trợ; footer là cuối trang.</li><li>section và aside dùng inline-block, vertical-align: top và border-box để cả padding, border được tính trong chiều rộng 68% và 28%.</li><li>main rộng 90% nhưng tối đa 1000px; margin: 30px auto tạo lề trên/dưới 30px và căn giữa theo chiều ngang.</li><li>section có lề phải 3%; phần chiều ngang còn lại đủ cho khoảng trắng giữa hai inline-block ở phông mặc định.</li><li>Bổ sung media query dưới 600px để hai cột xếp dọc dễ đọc. Các thông số hai cột theo đề được giữ trên màn hình lớn.</li><li>Trong tài liệu, phần b) Bài 12 để trống; các nhận xét ở đây là giải thích thêm cho bố cục. Ngày đăng ký là dữ liệu mẫu của đề, không phải thông báo thực tế.</li></ol><a href="#dau">Về mục lục</a></article></main>
+</body>
+</html>

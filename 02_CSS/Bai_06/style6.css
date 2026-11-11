@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+h1, h2 {
+    font-family: Arial, sans-serif;
+}
+h1 {
+    color: darkblue;
+    text-align: center;
+}
+nav a {
+    color: #0066cc;
+    text-decoration: none;
+}
+nav a:hover {
+    color: red;
+    text-decoration: underline;
+}

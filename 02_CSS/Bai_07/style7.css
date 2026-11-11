@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f6f8;
+}
+h1 {
+    color: #ffffff;
+    background-color: #0066cc;
+    font-size: 32px;
+    text-align: center;
+}
+nav {
+    background-color: #e6f0ff;
+    text-align: center;
+}
+nav a {
+    color: #0055aa;
+    font-weight: bold;
+    text-decoration: none;
+}
+nav a:hover {
+    color: red;
+    text-decoration: underline;
+}
+h2 {
+    color: darkgreen;
+    font-size: 24px;
+}
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}

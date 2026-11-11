@@ -1,0 +1,17 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+#tieude {
+    color: darkblue;
+    font-size: 30px;
+    text-align: center;
+}
+.thongbao {
+    color: #0066cc;
+    font-size: 18px;
+}
+.luuy {
+    color: red;
+    font-weight: bold;
+}
